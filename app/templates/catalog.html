@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Beer Catalog
+{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for index, beer in beers.iteritems() %}
+        <div class="col-sm-4 col-md-4">
+            <div class="thumbnail">
+                <img src="{{ url_for('static', filename='img/beer-' ~ (loop.index0 % 9 + 1) ~'.png') }}" alt="{{ 'img/beer-' ~ (loop.index0 % 9) + 1 ~'.png' }}">
+
+                <div class="caption">
+                    <h4>{{ beer.name }}</h4>
+                    <hr />
+                    <p>
+                        <span class="glyphicon glyphicon glyphicon-grain"></span> {{ beer.brewery }}<br />
+                        <span class="glyphicon glyphicon glyphicon-glass"></span> Vol. {{ beer.abv }} %<br />
+                        <span class="glyphicon glyphicon glyphicon-tag"></span>
+                        {% for type in beer.type.split(',') %}
+                            {% if "blonde" in type | lower %}
+                                <span class="label label-info">{{ type }}</span>
+                            {% elif "brune" in type | lower() %}
+                                <span class="label label-warning">{{ type }}</span>
+                            {% elif "triple" in type | lower() %}
+                                <span class="label label-success">{{ type }}</span>
+                            {% elif "fruitée" in type | lower() or "noël" in type | lower() %}
+                                <span class="label label-danger">{{ type }}</span>
+                            {% else %}
+                                <span class="label label-default">{{ type }}</span>
+                            {% endif %}
+                        {% endfor %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

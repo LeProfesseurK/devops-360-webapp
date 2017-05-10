@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <div class="intro-header">
+        <div class="container">
+            <!-- <span>Icon made by <a title="Freepik" href="http://www.freepik.com">Freepik</a> from <a title="Flaticon" href="http://www.flaticon.com">www.flaticon.com</a>&nbsp;</span> -->
+
+            <!-- <a href="http://www.freepik.com/free-photos-vectors/icon">Icon vector created by Freepik</a> -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <h1>Beer <span class="glyphicon glyphicon-flash battle"></span> Battle</h1>
+                        <hr class="intro-divider">
+                        <h3>The only one who knows which one is your favorite...</h3>
+                        <hr class="intro-divider">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /.intro-header -->
+{% endblock %}
+
+{% block content %}
+    <!-- Page Content -->
+    <div class="content-section-odd">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-sm-8">
+                    <div class="clearfix"></div>
+                    <br />
+                    <h2 class="section-heading">❤ Made for beer lovers</h2>
+                    <p class="lead">
+                        <blockquote>
+                            <small>
+                                This application allows you to rate thousand of belgium beers.
+
+                                <br /><br />
+
+                                The database comes from the <a href="https://fr.wikipedia.org/wiki/Liste_des_bi%C3%A8res_belges" target="blank">Wikipedia page named "Liste des bières belges"</a>
+
+                                <br /><br />
+                                <i class="text-justify">
+                                This list summarizes belgium beers, ordered by alphabetic letter. End 2011, we count about 1 150 belgium beers, brewed and commercialized by 146 breweries and 44 malting companies.
+                                </i>
+                            </small>
+                        </blockquote>
+                    </p>
+                </div>
+
+                <div class="col-lg-5 col-lg-offset-1 col-sm-4">
+                    <hr class="section-heading-spacer-invisible">
+                    <div class="clearfix"></div>
+                    <img class="img-responsive" src="{{ url_for('static', filename='img/beer-lovers.png') }}" alt="">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+	<a  name="contact"></a>
+    <div class="banner">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5">
+                    <a href="#" style="color: white;">
+                        <h2 class="text-left">Ready to vote for your favorite one ?</h2>
+                    </a>
+                </div>
+                <div class="col-lg-3">
+                    <div class="well stars">
+                        Triple Karmeliet:
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </div>
+                </div>
+
+                <div class="col-lg-1">
+                    <p class="text-center"><span class="glyphicon glyphicon-flash battle"></span></p>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="well stars">
+                        Delirium Tremens:
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.banner -->
+{% endblock %}

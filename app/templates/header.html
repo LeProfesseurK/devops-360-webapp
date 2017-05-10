@@ -1,0 +1,60 @@
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+    <div class="container topnav">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand topnav" href="#">Beer <span class="glyphicon glyphicon-flash"></span> Battle</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="{{ url_for('beerbattle.display') }}">Home</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('beerbattle.catalog') }}">Catalog</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<!-- Header -->
+<div class="container bartender">
+        <div>
+            <img class="img-responsive pull-right" width="10%" height="10%" src="{{ url_for('static', filename='img/bartender.png') }}" alt="">
+            <div class="panel panel-default pull-right">
+                <div class="panel-body text-right">
+                    <p>
+                        You are being served by : <span class="label label-primary">{{ get_server_name() | default('-') }}</span>
+                    </p>
+                    <p>
+                        Backend: <span class="label {% if get_db_connection_state() %}label-success{% else %}label-danger{% endif %}">
+                            {% if get_db_connection_state() %}
+                                <span class="glyphicon glyphicon-resize-small"></span>
+                            {% else %}
+                                <span class="glyphicon glyphicon-resize-full"></span>
+                            {% endif %}
+                            {{ get_db_connection_string() | default('-') }}
+                        </span>
+
+                    </p>
+
+                    <p>
+                        Code revision is : <span class="label label-primary">{{ get_git_revision() | default('-') }}</span>
+                        <span class="label label-primary">{{ get_git_tag() | default('-') }}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
