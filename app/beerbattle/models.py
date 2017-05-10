@@ -52,6 +52,8 @@ class Beer(db.Model):
             beer_ids = sample(range(
                 max(1, battle_interval[0]),
                 min(beer_max_id, battle_interval[1])), 2)
+        else:
+            beer_ids = sample(range(1,beer_max_id), 2)
 
         records = Beer.query.filter(or_(Beer.id == beer_ids[0], Beer.id == beer_ids[1]))
 
