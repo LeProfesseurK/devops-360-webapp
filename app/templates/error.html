@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Error!
+{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <h1><span class="glyphicon glyphicon-fire"></span> Something went wrong...</h1>
+        <blockquote>
+            <p><code>{{ error }}</code></p>
+        </blockquote>
+        <p><a class="btn btn-primary btn-lg" href="{{ url_for('beerbattle.display') }}" role="button">Let's go back inside</a></p>
+    </div>
+</div>
+
+{% endblock %}
