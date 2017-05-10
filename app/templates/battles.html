@@ -1,0 +1,120 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Beer Battles!
+{% endblock %}
+
+{% block head %}
+<div class="container text-center">
+    <h1>It's Battle Time!</h1>
+    <hr />
+
+    <button type="button" class="btn btn-default btn-lg">
+        <span class="glyphicon glyphicon-retweet" aria-hidden="true"></span>
+        <a href="{{ url_for('beerbattle.battle') }}">Skip battle
+        </a>
+    </button>
+
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="battle" class="container">
+    <div class="row">
+
+    <form id="vote" method="POST" action="{{ url_for('beerbattle.battle') }}" accept-charset="UTF-8" class="form-horizontal" role="form">
+    {% for id, beer in beers.iteritems() %}
+        {% if loop.index % 2 == 0 %}
+        <div class="col-sm-2 col-md-2 text-center">
+            <br /><br /><br /><br />
+            <br /><br /><br /><br />
+             <span class="glyphicon glyphicon glyphicon-flash battle"></span>
+        </div>
+        {% endif %}
+
+        <input type="hidden" id="beer_id_{{ loop.index }}" name="beer_id_{{ loop.index }}" value="{{ id }}">
+
+        <div class="col-sm-5 col-md-5">
+            <div class="thumbnail">
+                <h1 class="text-center">
+                    <button type="button" class="btn btn-primary btn-radio"><span class="glyphicon glyphicon-heart-empty"></span>  Vote for {{ beer.name }}</button>
+                    <input type="checkbox" id="beer_id_{{ loop.index }}_win" name="beer_id_{{ loop.index }}_win" class="hidden">
+                    <br />
+                    <br />
+                    <img class="img-radio" src="{{ url_for('static', filename='img/beer-' ~ (id % 9 + 1) ~'.png') }}" alt="{{ 'img/beer-' ~ (id % 9) + 1 ~'.png' }}">
+                </h1>
+
+                <div class="caption">
+                    <h4>{{ beer.name }}</h4>
+                    <hr />
+                    <p>
+                        <span class="glyphicon glyphicon glyphicon-grain"></span> {{ beer.brewery }}<br />
+                        <span class="glyphicon glyphicon glyphicon-glass"></span> Vol. {{ beer.abv }} %<br />
+                        <span class="glyphicon glyphicon glyphicon-tag"></span>
+                        {% for type in beer.type.split(',') %}
+                            {% if "blonde" in type | lower %}
+                                <span class="label label-info">{{ type }}</span>
+                            {% elif "brune" in type | lower() %}
+                                <span class="label label-warning">{{ type }}</span>
+                            {% elif "triple" in type | lower() %}
+                                <span class="label label-success">{{ type }}</span>
+                            {% elif "fruitée" in type | lower() or "noël" in type | lower() %}
+                                <span class="label label-danger">{{ type }}</span>
+                            {% else %}
+                                <span class="label label-default">{{ type }}</span>
+                            {% endif %}
+                        {% endfor %}
+                        <br />
+                        <hr />
+                    </p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    </form>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+    {{ super() }}
+
+    <script type="text/javascript">
+        $(function () {
+            $(document).ready(function () {
+                $("#vote").hide();
+                $("#vote").slideDown(400);
+            });
+
+            $('.btn-radio').click(function(e) {
+                $('.btn-radio').not(this).removeClass('active')
+                    .siblings('input').prop('checked',false)
+                    .siblings('.img-radio').css('opacity','0');
+
+                $(this).addClass('active')
+                    .siblings('input').prop('checked',true)
+                    .siblings('.img-radio').css('opacity','1');
+
+                var formData = JSON.stringify($("#vote").serializeArray());
+
+                // console.log(formData);
+
+                $.ajax({
+                    type: "POST",
+                    url: $SCRIPT_ROOT + "{{ url_for('beerbattle.battle') }}",
+                    data: formData,
+                    success: function(){
+                        $("#vote").slideUp(400, 'swing', function() {
+                            location.reload();
+                        });
+                    },
+                    dataType: "json",
+                    contentType : "application/json"
+                });
+            });
+        });
+    </script>
+
+{% endblock %}
