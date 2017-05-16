@@ -1,7 +1,25 @@
 # DevOps-360-Webapp
 Webapp used in devops-360 project
 
-## Running the application in prod
+## 1. Mysql Database
+##### 1.1. Running the database in production
+
+* Install a Mysql-Server
+* Database schemas and the intial mysql dump are located in the [database](./database) folder.
+* Developers will make sure to provide database schema upgrades in  `database/schemas/vX/beerbattle.sql` where `X` is the major realease number of the version. 
+
+> For example [v1.0.0](https://github.com/Lowess/devops-360-webapp/releases/tag/v1.0.0) requires `database/schemas/v1/beerbattle.sql`.
+
+> If you install [v2.0.0](https://github.com/Lowess/devops-360-webapp/releases/tag/v2.0.0) right away, you need to make sure to import the following schemas `database/schemas/v1/beerbattle.sql` and `database/schemas/v2/beerbattle.sql`.
+
+> It is safe to rerun multiple times the schemas/vX/beerbattle.sql imports as they include `IF NOT EXISTS` statements.
+
+* When you setup the database for the first time, you need to make sure to populate the `beer` table with the initial data dump file named [beerbattle.sql](./database/data/beerbattle.sql) (Also available as a CSV file if needed [beerbattle.csv](./database/data/beerbattle.csv)). 
+ 
+> :warning: Do not run the data import twice otherwise you will end up with duplicated data!
+
+## 2. Web application
+##### 2.1. Running the application in production
 
 * Install the project dependencies in a [virtualenv](https://virtualenv.pypa.io/en/stable/) with
 ```
