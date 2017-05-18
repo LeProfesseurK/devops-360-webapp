@@ -54,6 +54,60 @@ class ProductionConfig(Config):
 
 >Please note that in production you should not run `python run.py`. You should instead run the application with a tool like (UWSGI)[https://uwsgi-docs.readthedocs.io/en/latest/]
 
+##### 2.2. Application endpoints
+
+###### /heartbeat
+
+Returns 200 and a the following message if the application is healthy:
+
+```
+The Flask WebApp is healthy
+```
+
+###### /info
+
+Returns information about the Webapp:
+
+* `db_conn` (`string`): Database connection string
+* `db_conn_state` (`boolean`): Is the webapp connected to the database
+* `git_revision` (`string`): First 7 digit of the SHA commit
+* `git_tag` (`string`): Tag applied to the current commit (This is the application version)
+* `server_name` (`string`): Ip address of the server
+
+```
+{
+  "db_conn": "mysql://root:***@127.0.0.1/beerbattle",
+  "db_conn_state": false,
+  "git_revision": "18281ca",
+  "git_tag": "v1.0.0",
+  "server_name": "127.0.0.1"
+}
+```
+
+###### /home
+
+Home page of the webapp (HTML content).
+
+[Image of /home](./docs/webapp-home.png)
+
+###### /catalog
+
+List all beers present in the `beer` table from the database.
+
+[Image of /catalog](./docs/webapp-catalog.png)
+
+###### /top-beers
+
+List beers present in the `battle` table from the database, and display them ordered by people votes.
+
+[Image of /top-beers](./docs/webapp-top-beers.png)
+
+###### /battle
+
+Run a battle versus two beers picked up randomly from the database. The user can vote for his favorite one. Once the use vote, an other battle starts!
+
+[Image of /home](./docs/webapp-battle.png)
+
 # Enjoy!
 ![Image of BeerBattle](app/static/img/bartender.png)
 
