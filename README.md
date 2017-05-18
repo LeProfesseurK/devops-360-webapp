@@ -57,6 +57,7 @@ class ProductionConfig(Config):
 ##### 2.2. Application endpoints
 
 ###### /heartbeat
+-----------------
 
 Returns 200 and a the following message if the application is healthy:
 
@@ -65,6 +66,7 @@ The Flask WebApp is healthy
 ```
 
 ###### /info
+------------
 
 Returns information about the Webapp:
 
@@ -85,28 +87,32 @@ Returns information about the Webapp:
 ```
 
 ###### /home
+------------
 
 Home page of the webapp (HTML content).
 
-[Image of /home](./docs/webapp-home.png)
+![Image of /home](./docs/webapp-home.png)
 
 ###### /catalog
+---------------
 
 List all beers present in the `beer` table from the database.
 
-[Image of /catalog](./docs/webapp-catalog.png)
+![Image of /catalog](./docs/webapp-catalog.png)
 
 ###### /top-beers
+-----------------
 
 List beers present in the `battle` table from the database, and display them ordered by people votes.
 
-[Image of /top-beers](./docs/webapp-top-beers.png)
+![Image of /top-beers](./docs/webapp-top-beers.png)
 
 ###### /battle
+--------------
 
 Run a battle versus two beers picked up randomly from the database. The user can vote for his favorite one. Once the use vote, an other battle starts!
 
-[Image of /home](./docs/webapp-battle.png)
+![Image of /home](./docs/webapp-battle.png)
 
 # Enjoy!
 ![Image of BeerBattle](app/static/img/bartender.png)
