@@ -25,7 +25,7 @@ Webapp used in devops-360 project
 ```
 cd <application-root>/
 # Once the virtualenv is activated
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 * In order to override the developement configuration for production, configure the following template and place it under `<application-root>/app/config/prod.py`:
